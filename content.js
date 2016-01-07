@@ -8,27 +8,17 @@ chrome.runtime.onMessage.addListener(
         $.each(that.childNodes, function() {
           if (this.nodeName == '#text') {
             var match = this.nodeValue && this.nodeValue.match(/\.\s/);
-            if ($(that).data('tldr-parent')) {
-              $(that).find('[data-tldr-show] *').unwrap();
-              $(that).data('tldr-parent', false)
-                     .css({ visibility: '', color: '' })
-                     .find('*')
-                     .css({ visibility: '', color: '' });
+            if ($(that).data('topicsentence-parent')) {
+              $(that).find('[data-topicsentence-show]').css({ visibility: '' }).find('*').unwrap();
+              $(that).data('topicsentence-parent', false).css({ visibility: '' });
               return false; // break $.each
             } else if (match) {
-              range.setEnd(this, match.index);
+              range.setEnd(this, match.index + 1);
               var newNode = document.createElement("span");
               range.surroundContents(newNode);
-              var color = $(that).css('color');
-              $(newNode).attr('data-tldr-show', color);
-
-              var nums = color.split(/\D+/);
-              var newcolor = 'rgba(' + nums[1] + ',' + nums[2] + ',' + nums[3] + ', 0.2)';
-              $(that).data('tldr-parent', color)
-                     .css({ visibility: 'hidden', color: newcolor })
-                     .find('*:not([data-tldr-show])')
-                     .css({ visibility: 'hidden', color: newcolor });
-              $('[data-tldr-show], [data-tldr-show] *').css({ visibility: '', color: color });
+              $(newNode).attr('data-topicsentence-show', true);
+              $(that).data('topicsentence-parent', true).css({ visibility: 'hidden' });
+              $('[data-topicsentence-show], [data-topicsentence-show] *').css({ visibility: 'visible' });
               return false; // break $.each
             }
           }

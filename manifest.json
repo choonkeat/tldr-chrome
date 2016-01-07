@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Topic sentences",
-  "version": "0.1",
+  "name": "TLDR: Summary by topic sentence",
+  "version": "0.3",
   "content_scripts": [
     {
       "matches": [
