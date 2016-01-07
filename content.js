@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener(
               $(that).data('topicsentence-parent', false).css({ visibility: '' });
               return false; // break $.each
             } else if (match) {
-              range.setEnd(this, match.index + 1);
+              range.setEnd(this, match.index);
               var newNode = document.createElement("span");
               range.surroundContents(newNode);
               $(newNode).attr('data-topicsentence-show', true);
