@@ -3,8 +3,8 @@ chrome.runtime.onMessage.addListener(
     if (request.message === "clicked_browser_action" ) {
       if (! $('style[data-topicsentence-style')[0]) {
         var css = [
-              ".topicsentence-parent { visibility: hidden !important; }",
-              ".topicsentence-parent .topicsentence { visibility: visible !important; }",
+              ".topicsentence-parent { color: rgba(0,0,0,0.1) !important; }",
+              ".topicsentence-parent .topicsentence { color: rgba(0,0,0,1) !important; }",
             ].join("\n"),
             head = document.head || document.body,
             style = document.createElement('style');
