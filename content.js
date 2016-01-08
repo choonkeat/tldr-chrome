@@ -2,9 +2,11 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.message === "clicked_browser_action" ) {
       if (! $('style[data-topicsentence-style')[0]) {
+        var txtcolor = $('p').css('color').split(/\D+/);
+        var rgb = txtcolor[1] + ',' + txtcolor[2] + ',' + txtcolor[3];
         var css = [
-              ".topicsentence-parent { color: rgba(0,0,0,0.1) !important; }",
-              ".topicsentence-parent .topicsentence { color: rgba(0,0,0,1) !important; }",
+              ".topicsentence-parent, .topicsentence-parent * { color: rgba(" + rgb + ",0.2) !important; }",
+              ".topicsentence-parent .topicsentence, .topicsentence-parent .topicsentence * { color: rgba(" + rgb + ",1) !important; }",
             ].join("\n"),
             head = document.head || document.body,
             style = document.createElement('style');
